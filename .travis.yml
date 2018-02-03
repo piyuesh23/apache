@@ -22,3 +22,6 @@ script:
 
   # Run Ansible playbook.
   - docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
