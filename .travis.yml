@@ -7,14 +7,19 @@ script:
   - export cleanup=false
 
   # Run tests.
-  - printf ${green}"Starting Docker container: ubuntu:14.04."${neutral}"\n"
+  - print "Starting Docker container: ubuntu:14.04."
   - docker pull ubuntu:14.04
   - docker run --detach --volume="$PWD":/etc/ansible/roles/role_under_test:rw --name $container_id --privileged ubuntu:14.04 /sbin/init
 
+  # Install ansible.
+  - apt-add-repository ppa:ansible/ansible
+  - apt-get update
+  - apt-get install ansible
+
   # Check playbook yml syntax.
-  - printf ${green}"Checking syntax."${neutral}
+  - print "Checking syntax."
   - docker exec --tty $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml --syntax-check
 
   # Run Ansible playbook.
-  - printf ${green}"Running command: docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml"${neutral}
+  - print "Running command: docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml"
   - docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml
