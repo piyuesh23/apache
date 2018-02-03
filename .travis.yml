@@ -17,12 +17,8 @@ script:
   - docker exec --tty $container_id sudo apt-get update -y
   - docker exec --tty $container_id sudo apt-get install -y --no-install-recommends ansible
 
-  # Install Ansible inventory file
-  - sudo echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
-
-
   # Check playbook yml syntax.
-  - docker exec --tty $container_id /usr/sbin/ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml --syntax-check
+  - docker exec --tty $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml --syntax-check
 
   # Run Ansible playbook.
-  - docker exec $container_id /usr/sbin/ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml
+  - docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml
