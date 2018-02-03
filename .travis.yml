@@ -1,24 +1,20 @@
 ---
 services: docker
 
-env:
-  - distro: ubuntu1404
-    playbook: ubuntu104_test.yml
-
 script:
   # Configure test script so we can run extra tests after playbook is run.
   - export container_id=$(date +%s)
   - export cleanup=false
 
   # Run tests.
-  - printf ${green}"Starting Docker container: geerlingguy/docker-$distro-ansible."${neutral}"\n"
+  - printf ${green}"Starting Docker container: ubuntu:14.04."${neutral}"\n"
   - docker pull ubuntu:14.04
   - docker run --detach --volume="$PWD":/etc/ansible/roles/role_under_test:rw --name $container_id --privileged ubuntu:14.04 /sbin/init
 
   # Check playbook yml syntax.
   - printf ${green}"Checking syntax."${neutral}
-  - docker exec --tty $container_id env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/$playbook --syntax-check
+  - docker exec --tty $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml --syntax-check
 
   # Run Ansible playbook.
-  - printf ${green}"Running command: docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/$playbook"${neutral}
-  - docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/$playbook
+  - printf ${green}"Running command: docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml"${neutral}
+  - docker exec $container_id ansible-playbook /etc/ansible/roles/role_under_test/tests/ubuntu1404_test.yml
