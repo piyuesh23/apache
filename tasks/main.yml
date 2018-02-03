@@ -1,0 +1,6 @@
+---
+  - import_tasks: sub-tasks/apt-cache.yml
+  - import_tasks: sub-tasks/php.yml
+  - import_tasks: sub-tasks/apache.yml
+  - import_tasks: sub-tasks/extras.yml
+  - import_tasks: sub-tasks/drush.yml

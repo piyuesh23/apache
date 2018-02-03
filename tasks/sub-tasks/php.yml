@@ -1,0 +1,37 @@
+# PHP 7 stuff
+- name: "Update apt-get cache"
+  apt:
+    update_cache: yes
+
+- name: PHP | install packages to allow adding ppa repos
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - software-properties-common
+    - python-software-properties
+
+- name: PHP | Add php-{{ php_version }} PPA
+  apt_repository: repo='ppa:ondrej/php'
+              state=present
+              update_cache=yes
+
+- name: PHP | install php packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - php{{ php_version }}-cli
+    - php{{ php_version }}-common
+    - php{{ php_version }}-curl
+    - php{{ php_version }}-json
+    - php{{ php_version }}-gd
+    - php{{ php_version }}-mcrypt
+    - php{{ php_version }}-odbc
+    - php{{ php_version }}-mbstring
+    - php{{ php_version }}-mysql
+    - php{{ php_version }}-xmlrpc
+    - php{{ php_version }}-opcache
+    - php{{ php_version }}-intl
+    - php{{ php_version }}-bz2
+    - php{{ php_version }}-xml
+    - php{{ php_version }}-zip
+    - php-apcu
+    - php-memcached
+    - libapache2-mod-php{{ php_version }}

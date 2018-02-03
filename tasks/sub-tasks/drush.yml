@@ -1,0 +1,21 @@
+---
+
+- name: Clone Drush from GitHub
+  git:
+    repo: https://github.com/drush-ops/drush.git
+    dest: "{{ drush.install_path }}"
+    version: "{{ drush.version }}"
+    update: "{{ drush.keep_updated }}"
+    depth: 1
+
+- name: Install Drush dependencies with Composer
+  shell: >
+    {{ drush.composer_path }} install --prefer-source --no-interaction
+    chdir={{ drush.install_path }}
+    creates={{ drush.install_path }}/vendor/autoload.php
+
+- name: Create drush symlink
+  file:
+    src: "{{ drush.install_path }}/drush"
+    dest: "{{ drush.path }}"
+    state: link

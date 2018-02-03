@@ -1,0 +1,34 @@
+- name: Apache | Install Apache
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - apache2
+    - vim
+    - mysql-client
+
+- name: Apache | Enable modules
+  apache2_module:
+    state: present
+    name: rewrite
+  notify: restart apache
+
+- name: Apache | Copy over vhosts configuration.
+  template:
+    src: templates/apache/vhosts.conf.j2
+    dest: "/etc/apache2/sites-available/vhosts.conf"
+    owner: root
+    group: root
+    mode: 0600
+  notify: restart apache
+
+- name: Apache | Enable site
+  file:
+    src: "/etc/apache2/sites-available/vhosts.conf"
+    dest: "/etc/apache2/sites-enabled/vhosts.conf"
+    state: link
+  notify: restart apache
+
+- name: Disable apache2 default vhost
+  file:
+    path: /etc/apache2/sites-enabled/000-default.conf
+    state: absent
+  notify: restart apache
