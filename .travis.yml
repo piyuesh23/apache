@@ -11,10 +11,14 @@ script:
   - docker run --detach --volume="$PWD":/etc/ansible/roles/role_under_test:rw --name $container_id --privileged ubuntu:14.04 /sbin/init
 
   # Install ansible.
-  - sudo apt-add-repository -y ppa:ansible/ansible && sudo apt-get update && sudo apt-get install -y --no-install-recommends ansible
+  - docker exec --tty $container_id sudo apt-get update -y
+  - docker exec --tty $container_id sudo apt-get install software-properties-common python-software-properties -y
+  - docker exec --tty $container_id sudo apt-add-repository -y ppa:ansible/ansible
+  - docker exec --tty $container_id sudo apt-get update -y
+  - docker exec --tty $container_id sudo apt-get install -y --no-install-recommends ansible
 
   # Install Ansible inventory file
-  - echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
+  - sudo echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
 
 
   # Check playbook yml syntax.
