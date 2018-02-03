@@ -1,0 +1,17 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: piyuesh23
+  description: Apache webserver for Debian.
+  company: "QED42 Engineering Pvt. Ltd."
+  min_ansible_version: 2.2
+  platforms:
+    - name: Ubuntu
+      versions:
+      - all
+    - name: Debian
+      versions:
+      - all
+  galaxy_tags:
+    - webserver
