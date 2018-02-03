@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
 
   vars:
     apache_listen_port_ssl: 443
