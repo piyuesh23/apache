@@ -12,9 +12,9 @@ script:
   - docker run --detach --volume="$PWD":/etc/ansible/roles/role_under_test:rw --name $container_id --privileged ubuntu:14.04 /sbin/init
 
   # Install ansible.
-  - apt-add-repository ppa:ansible/ansible
-  - apt-get update
-  - apt-get install ansible
+  - sudo apt-add-repository ppa:ansible/ansible
+  - sudo apt-get update
+  - sudo apt-get install ansible
 
   # Check playbook yml syntax.
   - print "Checking syntax."
