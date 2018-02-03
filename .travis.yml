@@ -15,6 +15,7 @@ script:
   - sudo apt-add-repository ppa:ansible/ansible -y
   - sudo apt-get -qq update
   - sudo apt-get install ansible -y
+  - sudo apt-get install ansible-playbook -y
 
   # Check playbook yml syntax.
   - print "Checking syntax."
