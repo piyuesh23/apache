@@ -1,6 +1,6 @@
 # Ansible Role: Apache
 
-Installs and configures Apache webserver with PHP, composer & drush for Drupal usage.
+Installs and configures Apache webserver with PHP, composer & drush for Drupal usage on Debian based OS.
 
 ## Role Variables
 
