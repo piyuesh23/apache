@@ -1,3 +1,4 @@
+{% if sites %}
 {% for site in sites %}
 <VirtualHost *:80>
   servername {{ sites[site].server_name }}
@@ -16,3 +17,4 @@
   </Directory>
 </VirtualHost>
 {% endfor %}
+{% endif %}

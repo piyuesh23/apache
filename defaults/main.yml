@@ -8,7 +8,7 @@ drush:
   composer_path: "/usr/local/bin/composer"
   path: "/usr/local/bin/drush"
 
-sites:
-  d8_dev:
-    docroot: "/var/www/html/d8_dev/web"
-    server_name: "dev.d8"
+# sites:
+#   d8_dev:
+#     docroot: "/var/www/html/d8_dev/web"
+#     server_name: "dev.d8"
