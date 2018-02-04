@@ -24,3 +24,5 @@ Available variables are listed below, along with default values (see `defaults/m
         server_name: "dev.d8"
 
 Feel free to alter the PHP version as per your aplication needs. `Sites` is an array in case you need to spin up multiple virtual host entries for your local instance(Was developed as a part of ansible container, so the folder paths that we see here are mounted on ansible containers from host machine).
+
+Override sites variable in your playbook to setup vhosts for your project.

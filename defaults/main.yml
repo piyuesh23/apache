@@ -9,9 +9,6 @@ drush:
   path: "/usr/local/bin/drush"
 
 sites:
-  qed42:
-    docroot: "/var/www/html/qed42_v2/web"
-    server_name: "qed42.d8"
   d8_dev:
     docroot: "/var/www/html/d8_dev/web"
     server_name: "dev.d8"
