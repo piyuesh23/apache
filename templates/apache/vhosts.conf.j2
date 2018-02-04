@@ -1,4 +1,4 @@
-{% if sites %}
+{% if sites is defined %}
 {% for site in sites %}
 <VirtualHost *:80>
   servername {{ sites[site].server_name }}
