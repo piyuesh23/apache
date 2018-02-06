@@ -33,6 +33,7 @@
     - php{{ php_version }}-xml
     - php{{ php_version }}-zip
     - php-apcu
+    - php-xdebug
     - php-memcached
     - libapache2-mod-php{{ php_version }}
 
@@ -57,4 +58,18 @@
   file:
     src: /etc/php/{{ php_version }}/mods-available/mailhog.ini
     dest: /etc/php/{{ php_version }}/cli/conf.d/mailhog.ini
+    state: link
+
+- name: PHP | Copy over xdebug configuration
+  template:
+    src: templates/php/xdebug.ini.j2
+    dest: /etc/php/{{ php_version }}/mods-available/xdebug.ini
+    owner: root
+    group: root
+    mode: 0600
+
+- name: PHP | Enable xdebug conf for php cli
+  file:
+    src: /etc/php/{{ php_version }}/mods-available/xdebug.ini
+    dest: /etc/php/{{ php_version }}/cli/conf.d/xdebug.ini
     state: link
