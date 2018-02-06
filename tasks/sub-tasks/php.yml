@@ -35,3 +35,26 @@
     - php-apcu
     - php-memcached
     - libapache2-mod-php{{ php_version }}
+
+
+- name: PHP| Install mhsendmail
+  get_url:
+    url: https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64
+    dest: /usr/local/bin/mhsendmail
+    owner: root
+    group: root
+    mode: 0755
+
+- name: PHP | Copy over mailhog configuration
+  template:
+    src: templates/php/mailhog.ini.j2
+    dest: /etc/php/{{ php_version }}/mods-available/mailhog.ini
+    owner: root
+    group: root
+    mode: 0600
+
+- name: PHP | Enable mailhog conf for php cli
+  file:
+    src: /etc/php/{{ php_version }}/mods-available/mailhog.ini
+    dest: /etc/php/{{ php_version }}/cli/conf.d/mailhog.ini
+    state: link

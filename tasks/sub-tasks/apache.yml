@@ -32,3 +32,9 @@
     path: /etc/apache2/sites-enabled/000-default.conf
     state: absent
   notify: restart apache
+
+- name: PHP | Enable mailhog conf for apache
+  file:
+    src: /etc/php/{{ php_version }}/mods-available/mailhog.ini
+    dest: /etc/php/{{ php_version }}/apache2/conf.d/mailhog.ini
+    state: link
