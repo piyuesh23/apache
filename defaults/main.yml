@@ -1,7 +1,6 @@
 php_version: 7.1
 php_mailhog_host: mailhog
 php_mailhog_port: 1025
-webserver: apache
 
 drush:
   install_path: "/usr/local/lib/drush"

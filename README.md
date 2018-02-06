@@ -1,12 +1,14 @@
 # Ansible Role: Apache
 
-Installs and configures Apache webserver with PHP, composer & drush for Drupal usage on Debian based OS.
+Installs and configures Apache webserver with PHP, composer & drush for Drupal usage on Debian based OSphp_mailhog_host: mailhog.
 
 ## Role Variables
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
     php_version: 7.2
+    php_mailhog_port: 1025
+    php_mailhog_port: 1025
 
     drush:
       install_path: "/usr/local/lib/drush"
